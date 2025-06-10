@@ -15,8 +15,9 @@ type LanguageServer struct {
 	pb.UnimplementedLanguageServiceServer
 
 	ReferentSvc *db.ReferentService
-	SymbolSvc *db.SymbolService
-	WordSvc *db.WordService
+	SymbolSvc   *db.SymbolService
+	WordSvc     *db.WordService
+	RelSvc      *db.RelationshipService
 }
 
 // READ
@@ -65,8 +66,8 @@ func (s *LanguageServer) GetWord(ctx context.Context, req *pb.GetWordRequest) (*
 
 	return convertWordToProto(wrd), nil
 }
-func (s *LanguageServer) ListReferents(ctx context.Context, req *pb.ListReferentsRequest) (*pb.ListReferentsResponse, error)
-func (s *LanguageServer) FindReferents(ctx context.Context, req *pb.FindReferentsRequest) (*pb.FindReferentsResponse, error)
+// func (s *LanguageServer) ListReferents(ctx context.Context, req *pb.ListReferentsRequest) (*pb.ListReferentsResponse, error){}
+// func (s *LanguageServer) FindReferents(ctx context.Context, req *pb.FindReferentsRequest) (*pb.FindReferentsResponse, error){}
 
 // CREATE
 func (s *LanguageServer) CreateReferent(ctx context.Context, req *pb.CreateReferentRequest) (*pb.Referent, error){
@@ -84,14 +85,9 @@ func (s *LanguageServer) CreateReferent(ctx context.Context, req *pb.CreateRefer
 }
 
 func (s *LanguageServer) CreateSymbol(ctx context.Context, req *pb.CreateSymbolRequest) (*pb.Symbol, error) {
-	
-	refUid, err := uuid.Parse(req.GetReferentUid()); if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "invalid referent UID: %v", err)
-	}
 
 	var sym *db.Symbol = &db.Symbol{
 		UID: uuid.New(),
-		ReferentUID: refUid,
 		Language: int(req.GetLanguage()),
 		SymbolType: int(req.GetSymbolType()),
 	}
@@ -298,6 +294,56 @@ func (s *LanguageServer) DeleteWord(ctx context.Context, req *pb.DeleteWordReque
 }
 
 // LINKING OPERATIONS
-func (s *LanguageServer) LinkSymbolToReferent(context.Context, *pb.LinkSymbolToReferentRequest) (*pb.LinkSymbolToReferentResponse, error)
-func (s *LanguageServer) LinkWordToSymbol(context.Context, *pb.LinkWordToSymbolRequest) (*pb.LinkWordToSymbolResponse, error)
-func (s *LanguageServer) SetSymbolLemma(context.Context, *pb.SetSymbolLemmaRequest) (*pb.SetSymbolLemmaResponse, error)
+func (s *LanguageServer) LinkSymbolToReferent(ctx context.Context, req *pb.LinkSymbolToReferentRequest) (*pb.LinkSymbolToReferentResponse, error) {
+	symbolUID, err := uuid.Parse(req.GetSymbolUid())
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "invalid symbol UID: %v", err)
+	}
+
+	referentUID, err := uuid.Parse(req.GetReferentUid())
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "invalid referent UID: %v", err)
+	}
+
+	if err := s.RelSvc.AddSymbolToReferent(ctx, referentUID, symbolUID); err != nil {
+		return nil, status.Errorf(codes.Internal, "failed to link symbol to referent: %v", err)
+	}
+
+	return &pb.LinkSymbolToReferentResponse{Succes: true}, nil
+}
+
+func (s *LanguageServer) LinkWordToSymbol(ctx context.Context, req *pb.LinkWordToSymbolRequest) (*pb.LinkWordToSymbolResponse, error) {
+	wordUID, err := uuid.Parse(req.GetWordUid())
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "invalid word UID: %v", err)
+	}
+
+	symbolUID, err := uuid.Parse(req.GetSymbolUid())
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "invalid symbol UID: %v", err)
+	}
+
+	if err := s.RelSvc.AddWordToSymbol(ctx, symbolUID, wordUID); err != nil {
+		return nil, status.Errorf(codes.Internal, "failed to link word to symbol: %v", err)
+	}
+
+	return &pb.LinkWordToSymbolResponse{Succes: true}, nil
+}
+
+func (s *LanguageServer) SetSymbolLemma(ctx context.Context, req *pb.SetSymbolLemmaRequest) (*pb.SetSymbolLemmaResponse, error) {
+	wordUID, err := uuid.Parse(req.GetWordUid())
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "invalid word UID: %v", err)
+	}
+
+	symbolUID, err := uuid.Parse(req.GetSymbolUid())
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "invalid symbol UID: %v", err)
+	}
+
+	if err := s.RelSvc.SetSymbolLemma(ctx, symbolUID, wordUID); err != nil {
+		return nil, status.Errorf(codes.Internal, "failed to set symbol lemma: %v", err)
+	}
+
+	return &pb.SetSymbolLemmaResponse{Succes: true}, nil
+}
