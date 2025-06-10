@@ -27,6 +27,7 @@ func main() {
 	referentSvc := &db.ReferentService{DB: *gormDb}
 	symbolSvc := &db.SymbolService{DB: *gormDb}
 	wordSvc := &db.WordService{DB: *gormDb}
+	relationshipSvc := &db.RelationshipService{DB: *gormDb}
 
 	// Create gRPC server
 	grpcServer := grpc.NewServer()
@@ -34,6 +35,7 @@ func main() {
 		ReferentSvc: referentSvc,
 		SymbolSvc:   symbolSvc,
 		WordSvc:     wordSvc,
+		RelSvc:    relationshipSvc,
 	}
 	pb.RegisterLanguageServiceServer(grpcServer, languageServer)
 
