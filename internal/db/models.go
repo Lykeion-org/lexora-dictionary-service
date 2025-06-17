@@ -26,4 +26,48 @@ type Word struct {
 	SoundSource *string
 	IPA         *string
 	WordType    int
+	WordAttributes WordAttributes `gorm:"foreignKey:WordID"`
+}
+
+type WordAttributes struct {
+	WordID   		uuid.UUID `gorm:"type:uuid;primaryKey"`
+	Gender   		int
+	Number 			int
+	Unique 			bool
+	Diminutive 		bool
+	Case 			int
+	Mood 			int
+	Tense 			int
+	Aspect 			int
+	Person 			int
+	DirectObject 	bool
+	IndirectObject 	bool
+	Valency 		int
+	Reflexive 		bool
+}
+
+type WordSuggestion struct {
+	UID         uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primaryKey"`
+	Word        string    `gorm:"not null"`
+	SoundSource *string
+	IPA         *string
+	WordType    int
+	WordAttributes WordAttributes `gorm:"foreignKey:WordID"`
+}
+
+type WordAttributesSuggestion struct {
+	WordID   		uuid.UUID `gorm:"type:uuid;primaryKey"`
+	Gender   		int
+	Number 			int
+	Unique 			bool
+	Diminutive 		bool
+	Case 			int
+	Mood 			int
+	Tense 			int
+	Aspect 			int
+	Person 			int
+	DirectObject 	bool
+	IndirectObject 	bool
+	Valency 		int
+	Reflexive 		bool
 }

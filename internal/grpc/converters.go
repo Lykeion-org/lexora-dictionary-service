@@ -2,8 +2,8 @@ package grpc
 
 import (
 	"github.com/google/uuid"
-	db "github.com/Lykeion/lexora-dictionary-service/internal/db"
-	pb "github.com/Lykeion/lexora-dictionary-service/internal/grpc/generated"
+	db "github.com/Lykeion-org/lexora-dictionary-service/internal/db"
+	pb "github.com/Lykeion-org/lexora-dictionary-service/internal/grpc/generated"
 )
 
 // Proto to DB conversions

@@ -3,8 +3,8 @@ package grpc
 import (
 	"context"
 	"errors"
-	db "github.com/Lykeion/lexora-dictionary-service/internal/db"
-	pb "github.com/Lykeion/lexora-dictionary-service/internal/grpc/generated"
+	db "github.com/Lykeion-org/lexora-dictionary-service/internal/db"
+	pb "github.com/Lykeion-org/lexora-dictionary-service/internal/grpc/generated"
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -105,6 +105,8 @@ func (s *LanguageServer) CreateWord(ctx context.Context, req *pb.CreateWordReque
 		UID: uuid.New(),
 		Word: req.GetWord(),
 		WordType: int(req.GetWordType()),
+		SoundSource: req.SoundSource,
+		IPA: req.Ipa,
 	}
 	
 	createdWrd, err := s.WordSvc.CreateWord(ctx, wrd); if err != nil {

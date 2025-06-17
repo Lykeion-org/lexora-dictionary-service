@@ -1,4 +1,4 @@
-module github.com/Lykeion/lexora-dictionary-service
+module github.com/Lykeion-org/lexora-dictionary-service
 
 go 1.24.1
 

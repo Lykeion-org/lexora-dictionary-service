@@ -8,9 +8,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	db "github.com/Lykeion/lexora-dictionary-service/internal/db"
-	grpcserver "github.com/Lykeion/lexora-dictionary-service/internal/grpc"
-	pb "github.com/Lykeion/lexora-dictionary-service/internal/grpc/generated"
+	db "github.com/Lykeion-org/lexora-dictionary-service/internal/db"
+	grpcserver "github.com/Lykeion-org/lexora-dictionary-service/internal/grpc"
+	pb "github.com/Lykeion-org/lexora-dictionary-service/internal/grpc/generated"
 	"google.golang.org/grpc"
 )
 
@@ -72,7 +72,7 @@ func getConfigValues() (dsnString string, listenerPort string ){
 		os.Getenv("DB_PORT"),
 	)
 
-	var port string = ":50051"
+	var port string = ":50001"
 
 	return dsn, port
 }
