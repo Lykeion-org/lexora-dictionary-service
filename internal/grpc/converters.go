@@ -16,7 +16,7 @@ func convertProtoToReferent(r *pb.Referent) *db.Referent {
 	return &db.Referent{
 		UID:         uid,
 		EnReference: r.GetEnReference(),
-		ImageSource: stringPtr(r.GetImageSource()),
+		ImageSource: r.GetImageSource(),
 	}
 }
 
@@ -49,8 +49,8 @@ func convertProtoToWord(w *pb.Word) *db.Word {
 	return &db.Word{
 		UID:         uid,
 		Word:        w.GetWord(),
-		SoundSource: stringPtr(w.GetSoundSource()),
-		IPA:         stringPtr(w.GetIpa()),
+		SoundSource: w.GetSoundSource(),
+		IPA:         w.GetIpa(),
 		WordType:    int(w.GetWordType()),
 	}
 }
@@ -69,7 +69,7 @@ func convertReferentToProto(r *db.Referent) *pb.Referent {
 	return &pb.Referent{
 		Uid:         r.UID.String(),
 		EnReference: r.EnReference,
-		ImageSource: derefString(r.ImageSource),
+		ImageSource: r.ImageSource,
 		Symbols:     symbols,
 	}
 }
@@ -96,8 +96,8 @@ func convertWordToProto(w *db.Word) *pb.Word {
 	return &pb.Word{
 		Uid:         w.UID.String(),
 		Word:        w.Word,
-		SoundSource: derefString(w.SoundSource),
-		Ipa:         derefString(w.IPA),
+		SoundSource: w.SoundSource,
+		Ipa:         w.IPA,
 		WordType:    pb.WordType(w.WordType),
 	}
 }
@@ -108,6 +108,22 @@ func convertWordListToProto(wl []db.Word) []*pb.Word {
 		words = append(words, convertWordToProto(&w))
 	}
 	return words
+}
+
+func convertWordPointerListToProto(wl []*db.Word) []*pb.Word {
+	var words []*pb.Word
+	for _, w := range wl {
+		words = append(words, convertWordToProto(w))
+	}
+	return words
+}
+
+func convertReferentListToProto(rl []db.Referent) []*pb.Referent {
+	var referents []*pb.Referent
+	for _, r := range rl {
+		referents = append(referents, convertReferentToProto(&r))
+	}
+	return referents
 }
 
 // Helper functions

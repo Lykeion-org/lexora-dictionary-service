@@ -1,24 +1,61 @@
 package grpc
 
 import (
+	"net"
 	"context"
 	"errors"
 	db "github.com/Lykeion-org/lexora-dictionary-service/internal/db"
+	repository "github.com/Lykeion-org/lexora-dictionary-service/internal/repository"
 	pb "github.com/Lykeion-org/lexora-dictionary-service/internal/grpc/generated"
 	"github.com/google/uuid"
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"gorm.io/gorm"
 )
 
 type LanguageServer struct {
-	pb.UnimplementedLanguageServiceServer
-
-	ReferentSvc *db.ReferentService
-	SymbolSvc   *db.SymbolService
-	WordSvc     *db.WordService
-	RelSvc      *db.RelationshipService
+	pb.UnimplementedDictionaryServiceServer
+	ReferentRepository 			repository.ReferentRepository
+	SymbolRepository   			repository.SymbolRepository
+	WordRepository     			repository.WordRepository
+	RelationshipRepository      repository.RelationshipRepository
+	server						*grpc.Server
 }
+
+func NewLanguageServer(db *gorm.DB) *LanguageServer{
+	return &LanguageServer{
+		ReferentRepository: repository.NewReferentRepository(db),
+		SymbolRepository: repository.NewSymbolRepository(db),
+		WordRepository:      repository.NewWordRepository(db),
+		RelationshipRepository: repository.NewRelationshipRepository(db),
+	}
+}
+
+func (s *LanguageServer) StartServer(target string) error{
+	grpcServer := grpc.NewServer()
+	pb.RegisterDictionaryServiceServer(grpcServer, s)
+
+	listener, err := net.Listen("tcp", target)
+	if err != nil {
+		return err
+	}
+
+	go func(){
+		if err := grpcServer.Serve(listener); err != nil{
+			panic(err)
+		}
+	}()
+
+	s.server = grpcServer
+	return nil
+}
+
+func (s *LanguageServer) StopServer() error {
+	s.server.GracefulStop()
+	return nil
+}
+
 
 // READ
 func (s *LanguageServer) GetReferent(ctx context.Context, req *pb.GetReferentRequest) (*pb.Referent, error){
@@ -27,7 +64,7 @@ func (s *LanguageServer) GetReferent(ctx context.Context, req *pb.GetReferentReq
 		return nil, status.Errorf(codes.InvalidArgument, "invalid UID: %v", err)
 	}
 
-	ref, err := s.ReferentSvc.GetReferent(ctx, uid); if err != nil {
+	ref, err := s.ReferentRepository.GetReferent(ctx, uid); if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, status.Error(codes.NotFound, "referent not found")
 		}
@@ -36,13 +73,12 @@ func (s *LanguageServer) GetReferent(ctx context.Context, req *pb.GetReferentReq
 
 	return convertReferentToProto(ref), nil
 }
-
 func (s *LanguageServer) GetSymbol(ctx context.Context, req *pb.GetSymbolRequest) (*pb.Symbol, error){
 	uid, err := uuid.Parse(req.GetUid()); if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "invalid UID: %v", err)
 	}
 
-	sym, err := s.SymbolSvc.GetSymbol(ctx, uid); if err != nil {
+	sym, err := s.SymbolRepository.GetSymbol(ctx, uid); if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, status.Error(codes.NotFound, "symbol not found")
 		}
@@ -57,7 +93,7 @@ func (s *LanguageServer) GetWord(ctx context.Context, req *pb.GetWordRequest) (*
 		return nil, status.Errorf(codes.InvalidArgument, "invalid UID: %v", err)
 	}
 
-	wrd, err := s.WordSvc.GetWord(ctx, uid); if err != nil {
+	wrd, err := s.WordRepository.GetWord(ctx, uid); if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, status.Error(codes.NotFound, "word not found")
 		}
@@ -66,18 +102,32 @@ func (s *LanguageServer) GetWord(ctx context.Context, req *pb.GetWordRequest) (*
 
 	return convertWordToProto(wrd), nil
 }
-// func (s *LanguageServer) ListReferents(ctx context.Context, req *pb.ListReferentsRequest) (*pb.ListReferentsResponse, error){}
-// func (s *LanguageServer) FindReferents(ctx context.Context, req *pb.FindReferentsRequest) (*pb.FindReferentsResponse, error){}
+func (s *LanguageServer) FindReferents(ctx context.Context, req *pb.FindReferentsRequest) (*pb.FindReferentsResponse, error){
+	switch req.GetSearchMode(){
+	case pb.SearchMode_SEARCH_MODE_WORD:
+		referents, err := s.ReferentRepository.ListReferentByWord(ctx, req.GetQuery() ); if err != nil {
+			return nil, status.Errorf(codes.Internal, "db error: %v", err)
+		}
+		refList := convertReferentListToProto(referents)
+
+		return &pb.FindReferentsResponse{
+			Referents: refList,
+			TotalCount: int32(len(refList)),
+		}, nil
+	default:
+		return nil, status.Error(codes.Unimplemented, "search mode not implemented")
+	}
+}
 
 // CREATE
 func (s *LanguageServer) CreateReferent(ctx context.Context, req *pb.CreateReferentRequest) (*pb.Referent, error){
 	var ref *db.Referent = &db.Referent{
 		UID: uuid.New(),
 		EnReference: req.EnReference,
-		ImageSource: req.ImageSource,
+		ImageSource: req.GetImageSource(),
 	}
 	
-	createdRef, err := s.ReferentSvc.CreateReferent(ctx, ref); if err != nil {
+	createdRef, err := s.ReferentRepository.CreateReferent(ctx, ref); if err != nil {
 		return nil, status.Errorf(codes.Internal, "db: error: %v", err)
 	}
 
@@ -92,7 +142,7 @@ func (s *LanguageServer) CreateSymbol(ctx context.Context, req *pb.CreateSymbolR
 		SymbolType: int(req.GetSymbolType()),
 	}
 	
-	createdSym, err := s.SymbolSvc.CreateSymbol(ctx, sym); if err != nil {
+	createdSym, err := s.SymbolRepository.CreateSymbol(ctx, sym); if err != nil {
 		return nil, status.Errorf(codes.Internal, "db: error: %v", err)
 	}
 
@@ -105,11 +155,11 @@ func (s *LanguageServer) CreateWord(ctx context.Context, req *pb.CreateWordReque
 		UID: uuid.New(),
 		Word: req.GetWord(),
 		WordType: int(req.GetWordType()),
-		SoundSource: req.SoundSource,
-		IPA: req.Ipa,
+		SoundSource: req.GetSoundSource(),
+		IPA: req.GetIpa(),
 	}
 	
-	createdWrd, err := s.WordSvc.CreateWord(ctx, wrd); if err != nil {
+	createdWrd, err := s.WordRepository.CreateWord(ctx, wrd); if err != nil {
 		return nil, status.Errorf(codes.Internal, "db: error: %v", err)
 	}
 
@@ -129,7 +179,7 @@ func (s *LanguageServer) UpdateReferent(ctx context.Context, req *pb.UpdateRefer
 		return nil, status.Errorf(codes.InvalidArgument, "invalid UID: %v", err)
 	}
 
-	existing, err := s.ReferentSvc.GetReferent(ctx, uid)
+	existing, err := s.ReferentRepository.GetReferent(ctx, uid)
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, status.Error(codes.NotFound, "referent not found")
@@ -141,13 +191,11 @@ func (s *LanguageServer) UpdateReferent(ctx context.Context, req *pb.UpdateRefer
 	existing.EnReference = req.GetReferent().GetEnReference()
 	if req.GetReferent().GetImageSource() != "" {
 		imgSrc := req.GetReferent().GetImageSource()
-		existing.ImageSource = &imgSrc
-	} else {
-		existing.ImageSource = nil
+		existing.ImageSource = imgSrc
 	}
 
 	// Save changes
-	if err := s.ReferentSvc.UpdateReferent(ctx, existing); err != nil {
+	if err := s.ReferentRepository.UpdateReferent(ctx, existing); err != nil {
 		return nil, status.Errorf(codes.Internal, "db error: %v", err)
 	}
 
@@ -164,7 +212,7 @@ func (s *LanguageServer) UpdateSymbol(ctx context.Context, req *pb.UpdateSymbolR
 		return nil, status.Errorf(codes.InvalidArgument, "invalid UID: %v", err)
 	}
 
-	existing, err := s.SymbolSvc.GetSymbol(ctx, uid)
+	existing, err := s.SymbolRepository.GetSymbol(ctx, uid)
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, status.Error(codes.NotFound, "symbol not found")
@@ -178,7 +226,7 @@ func (s *LanguageServer) UpdateSymbol(ctx context.Context, req *pb.UpdateSymbolR
 	// Note: ReferentUID cannot be updated directly through Symbol proto
 
 	// Save changes
-	if err := s.SymbolSvc.UpdateSymbol(ctx, existing); err != nil {
+	if err := s.SymbolRepository.UpdateSymbol(ctx, existing); err != nil {
 		return nil, status.Errorf(codes.Internal, "db error: %v", err)
 	}
 
@@ -195,7 +243,7 @@ func (s *LanguageServer) UpdateWord(ctx context.Context, req *pb.UpdateWordReque
 		return nil, status.Errorf(codes.InvalidArgument, "invalid UID: %v", err)
 	}
 
-	existing, err := s.WordSvc.GetWord(ctx, uid)
+	existing, err := s.WordRepository.GetWord(ctx, uid)
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, status.Error(codes.NotFound, "word not found")
@@ -206,21 +254,11 @@ func (s *LanguageServer) UpdateWord(ctx context.Context, req *pb.UpdateWordReque
 	// Update fields
 	existing.Word = req.GetWord().GetWord()
 	existing.WordType = int(req.GetWord().GetWordType())
-	if req.GetWord().GetSoundSource() != "" {
-		soundSrc := req.GetWord().GetSoundSource()
-		existing.SoundSource = &soundSrc
-	} else {
-		existing.SoundSource = nil
-	}
-	if req.GetWord().GetIpa() != "" {
-		ipa := req.GetWord().GetIpa()
-		existing.IPA = &ipa
-	} else {
-		existing.IPA = nil
-	}
+	existing.SoundSource = req.GetWord().GetSoundSource()
+	existing.IPA = req.GetWord().GetIpa()
 
 	// Save changes
-	if err := s.WordSvc.UpdateWord(ctx, existing); err != nil {
+	if err := s.WordRepository.UpdateWord(ctx, existing); err != nil {
 		return nil, status.Errorf(codes.Internal, "db error: %v", err)
 	}
 
@@ -235,7 +273,7 @@ func (s *LanguageServer) DeleteReferent(ctx context.Context, req *pb.DeleteRefer
 	}
 
 	// First get the referent to return it after deletion
-	ref, err := s.ReferentSvc.GetReferent(ctx, uid)
+	ref, err := s.ReferentRepository.GetReferent(ctx, uid)
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, status.Error(codes.NotFound, "referent not found")
@@ -244,7 +282,7 @@ func (s *LanguageServer) DeleteReferent(ctx context.Context, req *pb.DeleteRefer
 	}
 
 	// Delete the referent
-	if err := s.ReferentSvc.DeleteReferent(ctx, uid); err != nil {
+	if err := s.ReferentRepository.DeleteReferent(ctx, uid); err != nil {
 		return nil, status.Errorf(codes.Internal, "db error: %v", err)
 	}
 
@@ -257,7 +295,7 @@ func (s *LanguageServer) DeleteSymbol(ctx context.Context, req *pb.DeleteSymbolR
 	}
 
 	// First get the symbol to return it after deletion
-	sym, err := s.SymbolSvc.GetSymbol(ctx, uid)
+	sym, err := s.SymbolRepository.GetSymbol(ctx, uid)
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, status.Error(codes.NotFound, "symbol not found")
@@ -266,7 +304,7 @@ func (s *LanguageServer) DeleteSymbol(ctx context.Context, req *pb.DeleteSymbolR
 	}
 
 	// Delete the symbol
-	if err := s.SymbolSvc.DeleteSymbol(ctx, uid); err != nil {
+	if err := s.SymbolRepository.DeleteSymbol(ctx, uid); err != nil {
 		return nil, status.Errorf(codes.Internal, "db error: %v", err)
 	}
 
@@ -279,7 +317,7 @@ func (s *LanguageServer) DeleteWord(ctx context.Context, req *pb.DeleteWordReque
 	}
 
 	// First get the word to return it after deletion
-	wrd, err := s.WordSvc.GetWord(ctx, uid)
+	wrd, err := s.WordRepository.GetWord(ctx, uid)
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, status.Error(codes.NotFound, "word not found")
@@ -288,7 +326,7 @@ func (s *LanguageServer) DeleteWord(ctx context.Context, req *pb.DeleteWordReque
 	}
 
 	// Delete the word
-	if err := s.WordSvc.DeleteWord(ctx, uid); err != nil {
+	if err := s.WordRepository.DeleteWord(ctx, uid); err != nil {
 		return nil, status.Errorf(codes.Internal, "db error: %v", err)
 	}
 
@@ -297,36 +335,40 @@ func (s *LanguageServer) DeleteWord(ctx context.Context, req *pb.DeleteWordReque
 
 // LINKING OPERATIONS
 func (s *LanguageServer) LinkSymbolToReferent(ctx context.Context, req *pb.LinkSymbolToReferentRequest) (*pb.LinkSymbolToReferentResponse, error) {
-	symbolUID, err := uuid.Parse(req.GetSymbolUid())
-	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "invalid symbol UID: %v", err)
-	}
-
 	referentUID, err := uuid.Parse(req.GetReferentUid())
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "invalid referent UID: %v", err)
 	}
 
-	if err := s.RelSvc.AddSymbolToReferent(ctx, referentUID, symbolUID); err != nil {
-		return nil, status.Errorf(codes.Internal, "failed to link symbol to referent: %v", err)
+	for _, symbolUIDStr := range req.GetSymbolUid() {
+		symbolUID, err := uuid.Parse(symbolUIDStr)
+		if err != nil {
+			return nil, status.Errorf(codes.InvalidArgument, "invalid symbol UID: %v", err)
+		}
+
+		if err := s.RelationshipRepository.AddSymbolToReferent(ctx, referentUID, symbolUID); err != nil {
+			return nil, status.Errorf(codes.Internal, "failed to link symbol to referent: %v", err)
+		}
 	}
 
 	return &pb.LinkSymbolToReferentResponse{Succes: true}, nil
 }
 
 func (s *LanguageServer) LinkWordToSymbol(ctx context.Context, req *pb.LinkWordToSymbolRequest) (*pb.LinkWordToSymbolResponse, error) {
-	wordUID, err := uuid.Parse(req.GetWordUid())
-	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "invalid word UID: %v", err)
-	}
-
 	symbolUID, err := uuid.Parse(req.GetSymbolUid())
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "invalid symbol UID: %v", err)
 	}
 
-	if err := s.RelSvc.AddWordToSymbol(ctx, symbolUID, wordUID); err != nil {
-		return nil, status.Errorf(codes.Internal, "failed to link word to symbol: %v", err)
+	for _, wordUIDStr := range req.GetWordUid() {
+		wordUID, err := uuid.Parse(wordUIDStr)
+		if err != nil {
+			return nil, status.Errorf(codes.InvalidArgument, "invalid symbol UID: %v", err)
+		}
+
+		if err := s.RelationshipRepository.AddWordToSymbol(ctx, symbolUID, wordUID); err != nil {
+			return nil, status.Errorf(codes.Internal, "failed to link symbol to referent: %v", err)
+		}
 	}
 
 	return &pb.LinkWordToSymbolResponse{Succes: true}, nil
@@ -343,7 +385,7 @@ func (s *LanguageServer) SetSymbolLemma(ctx context.Context, req *pb.SetSymbolLe
 		return nil, status.Errorf(codes.InvalidArgument, "invalid symbol UID: %v", err)
 	}
 
-	if err := s.RelSvc.SetSymbolLemma(ctx, symbolUID, wordUID); err != nil {
+	if err := s.RelationshipRepository.SetSymbolLemma(ctx, symbolUID, wordUID); err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to set symbol lemma: %v", err)
 	}
 

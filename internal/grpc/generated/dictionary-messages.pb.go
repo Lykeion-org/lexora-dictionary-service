@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v5.29.3
-// source: language/language-service.proto
+// source: dictionary-messages.proto
 
-package language
+package lexora
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -57,11 +57,11 @@ func (x SearchMode) String() string {
 }
 
 func (SearchMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_language_language_service_proto_enumTypes[0].Descriptor()
+	return file_dictionary_messages_proto_enumTypes[0].Descriptor()
 }
 
 func (SearchMode) Type() protoreflect.EnumType {
-	return &file_language_language_service_proto_enumTypes[0]
+	return &file_dictionary_messages_proto_enumTypes[0]
 }
 
 func (x SearchMode) Number() protoreflect.EnumNumber {
@@ -70,7 +70,7 @@ func (x SearchMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SearchMode.Descriptor instead.
 func (SearchMode) EnumDescriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{0}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{0}
 }
 
 // READ MESSAGES
@@ -83,7 +83,7 @@ type GetReferentRequest struct {
 
 func (x *GetReferentRequest) Reset() {
 	*x = GetReferentRequest{}
-	mi := &file_language_language_service_proto_msgTypes[0]
+	mi := &file_dictionary_messages_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -95,7 +95,7 @@ func (x *GetReferentRequest) String() string {
 func (*GetReferentRequest) ProtoMessage() {}
 
 func (x *GetReferentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[0]
+	mi := &file_dictionary_messages_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -108,7 +108,7 @@ func (x *GetReferentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetReferentRequest.ProtoReflect.Descriptor instead.
 func (*GetReferentRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{0}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *GetReferentRequest) GetUid() string {
@@ -127,7 +127,7 @@ type GetSymbolRequest struct {
 
 func (x *GetSymbolRequest) Reset() {
 	*x = GetSymbolRequest{}
-	mi := &file_language_language_service_proto_msgTypes[1]
+	mi := &file_dictionary_messages_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -139,7 +139,7 @@ func (x *GetSymbolRequest) String() string {
 func (*GetSymbolRequest) ProtoMessage() {}
 
 func (x *GetSymbolRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[1]
+	mi := &file_dictionary_messages_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -152,7 +152,7 @@ func (x *GetSymbolRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSymbolRequest.ProtoReflect.Descriptor instead.
 func (*GetSymbolRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{1}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetSymbolRequest) GetUid() string {
@@ -171,7 +171,7 @@ type GetWordRequest struct {
 
 func (x *GetWordRequest) Reset() {
 	*x = GetWordRequest{}
-	mi := &file_language_language_service_proto_msgTypes[2]
+	mi := &file_dictionary_messages_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -183,7 +183,7 @@ func (x *GetWordRequest) String() string {
 func (*GetWordRequest) ProtoMessage() {}
 
 func (x *GetWordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[2]
+	mi := &file_dictionary_messages_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -196,7 +196,7 @@ func (x *GetWordRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWordRequest.ProtoReflect.Descriptor instead.
 func (*GetWordRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{2}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetWordRequest) GetUid() string {
@@ -216,7 +216,7 @@ type ListReferentsRequest struct {
 
 func (x *ListReferentsRequest) Reset() {
 	*x = ListReferentsRequest{}
-	mi := &file_language_language_service_proto_msgTypes[3]
+	mi := &file_dictionary_messages_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -228,7 +228,7 @@ func (x *ListReferentsRequest) String() string {
 func (*ListReferentsRequest) ProtoMessage() {}
 
 func (x *ListReferentsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[3]
+	mi := &file_dictionary_messages_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -241,7 +241,7 @@ func (x *ListReferentsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListReferentsRequest.ProtoReflect.Descriptor instead.
 func (*ListReferentsRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{3}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ListReferentsRequest) GetPage() int32 {
@@ -268,7 +268,7 @@ type ListReferentsResponse struct {
 
 func (x *ListReferentsResponse) Reset() {
 	*x = ListReferentsResponse{}
-	mi := &file_language_language_service_proto_msgTypes[4]
+	mi := &file_dictionary_messages_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -280,7 +280,7 @@ func (x *ListReferentsResponse) String() string {
 func (*ListReferentsResponse) ProtoMessage() {}
 
 func (x *ListReferentsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[4]
+	mi := &file_dictionary_messages_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -293,7 +293,7 @@ func (x *ListReferentsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListReferentsResponse.ProtoReflect.Descriptor instead.
 func (*ListReferentsResponse) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{4}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ListReferentsResponse) GetReferents() []*Referent {
@@ -313,8 +313,8 @@ func (x *ListReferentsResponse) GetTotalCount() int32 {
 type FindReferentsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Query         string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	SearchMode    SearchMode             `protobuf:"varint,2,opt,name=search_mode,json=searchMode,proto3,enum=language.SearchMode" json:"search_mode,omitempty"`
-	Language      Language               `protobuf:"varint,3,opt,name=language,proto3,enum=language.Language" json:"language,omitempty"`
+	SearchMode    SearchMode             `protobuf:"varint,2,opt,name=search_mode,json=searchMode,proto3,enum=lexora.SearchMode" json:"search_mode,omitempty"`
+	Language      Language               `protobuf:"varint,3,opt,name=language,proto3,enum=lexora.Language" json:"language,omitempty"`
 	Page          int32                  `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
 	PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -323,7 +323,7 @@ type FindReferentsRequest struct {
 
 func (x *FindReferentsRequest) Reset() {
 	*x = FindReferentsRequest{}
-	mi := &file_language_language_service_proto_msgTypes[5]
+	mi := &file_dictionary_messages_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -335,7 +335,7 @@ func (x *FindReferentsRequest) String() string {
 func (*FindReferentsRequest) ProtoMessage() {}
 
 func (x *FindReferentsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[5]
+	mi := &file_dictionary_messages_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -348,7 +348,7 @@ func (x *FindReferentsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindReferentsRequest.ProtoReflect.Descriptor instead.
 func (*FindReferentsRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{5}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *FindReferentsRequest) GetQuery() string {
@@ -396,7 +396,7 @@ type FindReferentsResponse struct {
 
 func (x *FindReferentsResponse) Reset() {
 	*x = FindReferentsResponse{}
-	mi := &file_language_language_service_proto_msgTypes[6]
+	mi := &file_dictionary_messages_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -408,7 +408,7 @@ func (x *FindReferentsResponse) String() string {
 func (*FindReferentsResponse) ProtoMessage() {}
 
 func (x *FindReferentsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[6]
+	mi := &file_dictionary_messages_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -421,7 +421,7 @@ func (x *FindReferentsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindReferentsResponse.ProtoReflect.Descriptor instead.
 func (*FindReferentsResponse) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{6}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *FindReferentsResponse) GetReferents() []*Referent {
@@ -450,7 +450,7 @@ type CreateReferentRequest struct {
 
 func (x *CreateReferentRequest) Reset() {
 	*x = CreateReferentRequest{}
-	mi := &file_language_language_service_proto_msgTypes[7]
+	mi := &file_dictionary_messages_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -462,7 +462,7 @@ func (x *CreateReferentRequest) String() string {
 func (*CreateReferentRequest) ProtoMessage() {}
 
 func (x *CreateReferentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[7]
+	mi := &file_dictionary_messages_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -475,7 +475,7 @@ func (x *CreateReferentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateReferentRequest.ProtoReflect.Descriptor instead.
 func (*CreateReferentRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{7}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *CreateReferentRequest) GetEnReference() string {
@@ -502,8 +502,8 @@ func (x *CreateReferentRequest) GetSymbols() []*Symbol {
 type CreateSymbolRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ReferentUid   string                 `protobuf:"bytes,1,opt,name=referent_uid,json=referentUid,proto3" json:"referent_uid,omitempty"`
-	Language      Language               `protobuf:"varint,2,opt,name=language,proto3,enum=language.Language" json:"language,omitempty"`
-	SymbolType    SymbolType             `protobuf:"varint,3,opt,name=symbol_type,json=symbolType,proto3,enum=language.SymbolType" json:"symbol_type,omitempty"`
+	Language      Language               `protobuf:"varint,2,opt,name=language,proto3,enum=lexora.Language" json:"language,omitempty"`
+	SymbolType    SymbolType             `protobuf:"varint,3,opt,name=symbol_type,json=symbolType,proto3,enum=lexora.SymbolType" json:"symbol_type,omitempty"`
 	Lemma         *Word                  `protobuf:"bytes,4,opt,name=lemma,proto3,oneof" json:"lemma,omitempty"`
 	Words         []*Word                `protobuf:"bytes,5,rep,name=words,proto3" json:"words,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -512,7 +512,7 @@ type CreateSymbolRequest struct {
 
 func (x *CreateSymbolRequest) Reset() {
 	*x = CreateSymbolRequest{}
-	mi := &file_language_language_service_proto_msgTypes[8]
+	mi := &file_dictionary_messages_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -524,7 +524,7 @@ func (x *CreateSymbolRequest) String() string {
 func (*CreateSymbolRequest) ProtoMessage() {}
 
 func (x *CreateSymbolRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[8]
+	mi := &file_dictionary_messages_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -537,7 +537,7 @@ func (x *CreateSymbolRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSymbolRequest.ProtoReflect.Descriptor instead.
 func (*CreateSymbolRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{8}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CreateSymbolRequest) GetReferentUid() string {
@@ -581,14 +581,14 @@ type CreateWordRequest struct {
 	Word          string                 `protobuf:"bytes,2,opt,name=word,proto3" json:"word,omitempty"`
 	SoundSource   *string                `protobuf:"bytes,3,opt,name=sound_source,json=soundSource,proto3,oneof" json:"sound_source,omitempty"`
 	Ipa           *string                `protobuf:"bytes,4,opt,name=ipa,proto3,oneof" json:"ipa,omitempty"`
-	WordType      WordType               `protobuf:"varint,5,opt,name=word_type,json=wordType,proto3,enum=language.WordType" json:"word_type,omitempty"`
+	WordType      WordType               `protobuf:"varint,5,opt,name=word_type,json=wordType,proto3,enum=lexora.WordType" json:"word_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateWordRequest) Reset() {
 	*x = CreateWordRequest{}
-	mi := &file_language_language_service_proto_msgTypes[9]
+	mi := &file_dictionary_messages_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -600,7 +600,7 @@ func (x *CreateWordRequest) String() string {
 func (*CreateWordRequest) ProtoMessage() {}
 
 func (x *CreateWordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[9]
+	mi := &file_dictionary_messages_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -613,7 +613,7 @@ func (x *CreateWordRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateWordRequest.ProtoReflect.Descriptor instead.
 func (*CreateWordRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{9}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *CreateWordRequest) GetSymbolUid() string {
@@ -661,7 +661,7 @@ type UpdateReferentRequest struct {
 
 func (x *UpdateReferentRequest) Reset() {
 	*x = UpdateReferentRequest{}
-	mi := &file_language_language_service_proto_msgTypes[10]
+	mi := &file_dictionary_messages_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -673,7 +673,7 @@ func (x *UpdateReferentRequest) String() string {
 func (*UpdateReferentRequest) ProtoMessage() {}
 
 func (x *UpdateReferentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[10]
+	mi := &file_dictionary_messages_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -686,7 +686,7 @@ func (x *UpdateReferentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateReferentRequest.ProtoReflect.Descriptor instead.
 func (*UpdateReferentRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{10}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *UpdateReferentRequest) GetReferent() *Referent {
@@ -705,7 +705,7 @@ type UpdateSymbolRequest struct {
 
 func (x *UpdateSymbolRequest) Reset() {
 	*x = UpdateSymbolRequest{}
-	mi := &file_language_language_service_proto_msgTypes[11]
+	mi := &file_dictionary_messages_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -717,7 +717,7 @@ func (x *UpdateSymbolRequest) String() string {
 func (*UpdateSymbolRequest) ProtoMessage() {}
 
 func (x *UpdateSymbolRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[11]
+	mi := &file_dictionary_messages_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -730,7 +730,7 @@ func (x *UpdateSymbolRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSymbolRequest.ProtoReflect.Descriptor instead.
 func (*UpdateSymbolRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{11}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *UpdateSymbolRequest) GetSymbol() *Symbol {
@@ -749,7 +749,7 @@ type UpdateWordRequest struct {
 
 func (x *UpdateWordRequest) Reset() {
 	*x = UpdateWordRequest{}
-	mi := &file_language_language_service_proto_msgTypes[12]
+	mi := &file_dictionary_messages_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -761,7 +761,7 @@ func (x *UpdateWordRequest) String() string {
 func (*UpdateWordRequest) ProtoMessage() {}
 
 func (x *UpdateWordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[12]
+	mi := &file_dictionary_messages_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -774,7 +774,7 @@ func (x *UpdateWordRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateWordRequest.ProtoReflect.Descriptor instead.
 func (*UpdateWordRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{12}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *UpdateWordRequest) GetWord() *Word {
@@ -794,7 +794,7 @@ type DeleteReferentRequest struct {
 
 func (x *DeleteReferentRequest) Reset() {
 	*x = DeleteReferentRequest{}
-	mi := &file_language_language_service_proto_msgTypes[13]
+	mi := &file_dictionary_messages_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -806,7 +806,7 @@ func (x *DeleteReferentRequest) String() string {
 func (*DeleteReferentRequest) ProtoMessage() {}
 
 func (x *DeleteReferentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[13]
+	mi := &file_dictionary_messages_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -819,7 +819,7 @@ func (x *DeleteReferentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteReferentRequest.ProtoReflect.Descriptor instead.
 func (*DeleteReferentRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{13}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *DeleteReferentRequest) GetReferentUid() string {
@@ -838,7 +838,7 @@ type DeleteSymbolRequest struct {
 
 func (x *DeleteSymbolRequest) Reset() {
 	*x = DeleteSymbolRequest{}
-	mi := &file_language_language_service_proto_msgTypes[14]
+	mi := &file_dictionary_messages_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -850,7 +850,7 @@ func (x *DeleteSymbolRequest) String() string {
 func (*DeleteSymbolRequest) ProtoMessage() {}
 
 func (x *DeleteSymbolRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[14]
+	mi := &file_dictionary_messages_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -863,7 +863,7 @@ func (x *DeleteSymbolRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSymbolRequest.ProtoReflect.Descriptor instead.
 func (*DeleteSymbolRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{14}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *DeleteSymbolRequest) GetSymbolUid() string {
@@ -882,7 +882,7 @@ type DeleteWordRequest struct {
 
 func (x *DeleteWordRequest) Reset() {
 	*x = DeleteWordRequest{}
-	mi := &file_language_language_service_proto_msgTypes[15]
+	mi := &file_dictionary_messages_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -894,7 +894,7 @@ func (x *DeleteWordRequest) String() string {
 func (*DeleteWordRequest) ProtoMessage() {}
 
 func (x *DeleteWordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[15]
+	mi := &file_dictionary_messages_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -907,7 +907,7 @@ func (x *DeleteWordRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteWordRequest.ProtoReflect.Descriptor instead.
 func (*DeleteWordRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{15}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *DeleteWordRequest) GetWordUid() string {
@@ -920,7 +920,7 @@ func (x *DeleteWordRequest) GetWordUid() string {
 // LINKING OPERATIONS MESSAGES
 type LinkSymbolToReferentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	SymbolUid     string                 `protobuf:"bytes,1,opt,name=symbol_uid,json=symbolUid,proto3" json:"symbol_uid,omitempty"`
+	SymbolUid     []string               `protobuf:"bytes,1,rep,name=symbol_uid,json=symbolUid,proto3" json:"symbol_uid,omitempty"`
 	ReferentUid   string                 `protobuf:"bytes,2,opt,name=referent_uid,json=referentUid,proto3" json:"referent_uid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -928,7 +928,7 @@ type LinkSymbolToReferentRequest struct {
 
 func (x *LinkSymbolToReferentRequest) Reset() {
 	*x = LinkSymbolToReferentRequest{}
-	mi := &file_language_language_service_proto_msgTypes[16]
+	mi := &file_dictionary_messages_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -940,7 +940,7 @@ func (x *LinkSymbolToReferentRequest) String() string {
 func (*LinkSymbolToReferentRequest) ProtoMessage() {}
 
 func (x *LinkSymbolToReferentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[16]
+	mi := &file_dictionary_messages_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -953,14 +953,14 @@ func (x *LinkSymbolToReferentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinkSymbolToReferentRequest.ProtoReflect.Descriptor instead.
 func (*LinkSymbolToReferentRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{16}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *LinkSymbolToReferentRequest) GetSymbolUid() string {
+func (x *LinkSymbolToReferentRequest) GetSymbolUid() []string {
 	if x != nil {
 		return x.SymbolUid
 	}
-	return ""
+	return nil
 }
 
 func (x *LinkSymbolToReferentRequest) GetReferentUid() string {
@@ -979,7 +979,7 @@ type LinkSymbolToReferentResponse struct {
 
 func (x *LinkSymbolToReferentResponse) Reset() {
 	*x = LinkSymbolToReferentResponse{}
-	mi := &file_language_language_service_proto_msgTypes[17]
+	mi := &file_dictionary_messages_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -991,7 +991,7 @@ func (x *LinkSymbolToReferentResponse) String() string {
 func (*LinkSymbolToReferentResponse) ProtoMessage() {}
 
 func (x *LinkSymbolToReferentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[17]
+	mi := &file_dictionary_messages_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1004,7 +1004,7 @@ func (x *LinkSymbolToReferentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinkSymbolToReferentResponse.ProtoReflect.Descriptor instead.
 func (*LinkSymbolToReferentResponse) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{17}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *LinkSymbolToReferentResponse) GetSucces() bool {
@@ -1016,7 +1016,7 @@ func (x *LinkSymbolToReferentResponse) GetSucces() bool {
 
 type LinkWordToSymbolRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	WordUid       string                 `protobuf:"bytes,1,opt,name=word_uid,json=wordUid,proto3" json:"word_uid,omitempty"`
+	WordUid       []string               `protobuf:"bytes,1,rep,name=word_uid,json=wordUid,proto3" json:"word_uid,omitempty"`
 	SymbolUid     string                 `protobuf:"bytes,2,opt,name=symbol_uid,json=symbolUid,proto3" json:"symbol_uid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1024,7 +1024,7 @@ type LinkWordToSymbolRequest struct {
 
 func (x *LinkWordToSymbolRequest) Reset() {
 	*x = LinkWordToSymbolRequest{}
-	mi := &file_language_language_service_proto_msgTypes[18]
+	mi := &file_dictionary_messages_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1036,7 +1036,7 @@ func (x *LinkWordToSymbolRequest) String() string {
 func (*LinkWordToSymbolRequest) ProtoMessage() {}
 
 func (x *LinkWordToSymbolRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[18]
+	mi := &file_dictionary_messages_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1049,14 +1049,14 @@ func (x *LinkWordToSymbolRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinkWordToSymbolRequest.ProtoReflect.Descriptor instead.
 func (*LinkWordToSymbolRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{18}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{18}
 }
 
-func (x *LinkWordToSymbolRequest) GetWordUid() string {
+func (x *LinkWordToSymbolRequest) GetWordUid() []string {
 	if x != nil {
 		return x.WordUid
 	}
-	return ""
+	return nil
 }
 
 func (x *LinkWordToSymbolRequest) GetSymbolUid() string {
@@ -1075,7 +1075,7 @@ type LinkWordToSymbolResponse struct {
 
 func (x *LinkWordToSymbolResponse) Reset() {
 	*x = LinkWordToSymbolResponse{}
-	mi := &file_language_language_service_proto_msgTypes[19]
+	mi := &file_dictionary_messages_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1087,7 +1087,7 @@ func (x *LinkWordToSymbolResponse) String() string {
 func (*LinkWordToSymbolResponse) ProtoMessage() {}
 
 func (x *LinkWordToSymbolResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[19]
+	mi := &file_dictionary_messages_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1100,7 +1100,7 @@ func (x *LinkWordToSymbolResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinkWordToSymbolResponse.ProtoReflect.Descriptor instead.
 func (*LinkWordToSymbolResponse) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{19}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *LinkWordToSymbolResponse) GetSucces() bool {
@@ -1120,7 +1120,7 @@ type SetSymbolLemmaRequest struct {
 
 func (x *SetSymbolLemmaRequest) Reset() {
 	*x = SetSymbolLemmaRequest{}
-	mi := &file_language_language_service_proto_msgTypes[20]
+	mi := &file_dictionary_messages_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1132,7 +1132,7 @@ func (x *SetSymbolLemmaRequest) String() string {
 func (*SetSymbolLemmaRequest) ProtoMessage() {}
 
 func (x *SetSymbolLemmaRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[20]
+	mi := &file_dictionary_messages_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1145,7 +1145,7 @@ func (x *SetSymbolLemmaRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetSymbolLemmaRequest.ProtoReflect.Descriptor instead.
 func (*SetSymbolLemmaRequest) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{20}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *SetSymbolLemmaRequest) GetWordUid() string {
@@ -1171,7 +1171,7 @@ type SetSymbolLemmaResponse struct {
 
 func (x *SetSymbolLemmaResponse) Reset() {
 	*x = SetSymbolLemmaResponse{}
-	mi := &file_language_language_service_proto_msgTypes[21]
+	mi := &file_dictionary_messages_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1183,7 +1183,7 @@ func (x *SetSymbolLemmaResponse) String() string {
 func (*SetSymbolLemmaResponse) ProtoMessage() {}
 
 func (x *SetSymbolLemmaResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_language_language_service_proto_msgTypes[21]
+	mi := &file_dictionary_messages_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1196,7 +1196,7 @@ func (x *SetSymbolLemmaResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetSymbolLemmaResponse.ProtoReflect.Descriptor instead.
 func (*SetSymbolLemmaResponse) Descriptor() ([]byte, []int) {
-	return file_language_language_service_proto_rawDescGZIP(), []int{21}
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *SetSymbolLemmaResponse) GetSucces() bool {
@@ -1206,11 +1206,379 @@ func (x *SetSymbolLemmaResponse) GetSucces() bool {
 	return false
 }
 
-var File_language_language_service_proto protoreflect.FileDescriptor
+type UnlinkSymbolFromReferentRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SymbolUid     string                 `protobuf:"bytes,1,opt,name=symbol_uid,json=symbolUid,proto3" json:"symbol_uid,omitempty"`
+	ReferentUid   string                 `protobuf:"bytes,2,opt,name=referent_uid,json=referentUid,proto3" json:"referent_uid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
 
-const file_language_language_service_proto_rawDesc = "" +
+func (x *UnlinkSymbolFromReferentRequest) Reset() {
+	*x = UnlinkSymbolFromReferentRequest{}
+	mi := &file_dictionary_messages_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UnlinkSymbolFromReferentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnlinkSymbolFromReferentRequest) ProtoMessage() {}
+
+func (x *UnlinkSymbolFromReferentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_dictionary_messages_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnlinkSymbolFromReferentRequest.ProtoReflect.Descriptor instead.
+func (*UnlinkSymbolFromReferentRequest) Descriptor() ([]byte, []int) {
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *UnlinkSymbolFromReferentRequest) GetSymbolUid() string {
+	if x != nil {
+		return x.SymbolUid
+	}
+	return ""
+}
+
+func (x *UnlinkSymbolFromReferentRequest) GetReferentUid() string {
+	if x != nil {
+		return x.ReferentUid
+	}
+	return ""
+}
+
+type UnlinkSymbolFromReferentResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UnlinkSymbolFromReferentResponse) Reset() {
+	*x = UnlinkSymbolFromReferentResponse{}
+	mi := &file_dictionary_messages_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UnlinkSymbolFromReferentResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnlinkSymbolFromReferentResponse) ProtoMessage() {}
+
+func (x *UnlinkSymbolFromReferentResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_dictionary_messages_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnlinkSymbolFromReferentResponse.ProtoReflect.Descriptor instead.
+func (*UnlinkSymbolFromReferentResponse) Descriptor() ([]byte, []int) {
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *UnlinkSymbolFromReferentResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+type UnlinkWordFromSymbolRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	WordUid       string                 `protobuf:"bytes,1,opt,name=word_uid,json=wordUid,proto3" json:"word_uid,omitempty"`
+	SymbolUid     string                 `protobuf:"bytes,2,opt,name=symbol_uid,json=symbolUid,proto3" json:"symbol_uid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UnlinkWordFromSymbolRequest) Reset() {
+	*x = UnlinkWordFromSymbolRequest{}
+	mi := &file_dictionary_messages_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UnlinkWordFromSymbolRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnlinkWordFromSymbolRequest) ProtoMessage() {}
+
+func (x *UnlinkWordFromSymbolRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_dictionary_messages_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnlinkWordFromSymbolRequest.ProtoReflect.Descriptor instead.
+func (*UnlinkWordFromSymbolRequest) Descriptor() ([]byte, []int) {
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *UnlinkWordFromSymbolRequest) GetWordUid() string {
+	if x != nil {
+		return x.WordUid
+	}
+	return ""
+}
+
+func (x *UnlinkWordFromSymbolRequest) GetSymbolUid() string {
+	if x != nil {
+		return x.SymbolUid
+	}
+	return ""
+}
+
+type UnlinkWordFromSymbolResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UnlinkWordFromSymbolResponse) Reset() {
+	*x = UnlinkWordFromSymbolResponse{}
+	mi := &file_dictionary_messages_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UnlinkWordFromSymbolResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnlinkWordFromSymbolResponse) ProtoMessage() {}
+
+func (x *UnlinkWordFromSymbolResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_dictionary_messages_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnlinkWordFromSymbolResponse.ProtoReflect.Descriptor instead.
+func (*UnlinkWordFromSymbolResponse) Descriptor() ([]byte, []int) {
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *UnlinkWordFromSymbolResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+type ListAllLinkedReferentsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SymbolUid     string                 `protobuf:"bytes,1,opt,name=symbol_uid,json=symbolUid,proto3" json:"symbol_uid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListAllLinkedReferentsRequest) Reset() {
+	*x = ListAllLinkedReferentsRequest{}
+	mi := &file_dictionary_messages_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListAllLinkedReferentsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListAllLinkedReferentsRequest) ProtoMessage() {}
+
+func (x *ListAllLinkedReferentsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_dictionary_messages_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListAllLinkedReferentsRequest.ProtoReflect.Descriptor instead.
+func (*ListAllLinkedReferentsRequest) Descriptor() ([]byte, []int) {
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *ListAllLinkedReferentsRequest) GetSymbolUid() string {
+	if x != nil {
+		return x.SymbolUid
+	}
+	return ""
+}
+
+type ListAllLinkedReferentsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ReferentUids  []string               `protobuf:"bytes,1,rep,name=referent_uids,json=referentUids,proto3" json:"referent_uids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListAllLinkedReferentsResponse) Reset() {
+	*x = ListAllLinkedReferentsResponse{}
+	mi := &file_dictionary_messages_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListAllLinkedReferentsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListAllLinkedReferentsResponse) ProtoMessage() {}
+
+func (x *ListAllLinkedReferentsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_dictionary_messages_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListAllLinkedReferentsResponse.ProtoReflect.Descriptor instead.
+func (*ListAllLinkedReferentsResponse) Descriptor() ([]byte, []int) {
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *ListAllLinkedReferentsResponse) GetReferentUids() []string {
+	if x != nil {
+		return x.ReferentUids
+	}
+	return nil
+}
+
+type ListAllLinkedSymbolsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	WordUid       string                 `protobuf:"bytes,1,opt,name=word_uid,json=wordUid,proto3" json:"word_uid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListAllLinkedSymbolsRequest) Reset() {
+	*x = ListAllLinkedSymbolsRequest{}
+	mi := &file_dictionary_messages_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListAllLinkedSymbolsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListAllLinkedSymbolsRequest) ProtoMessage() {}
+
+func (x *ListAllLinkedSymbolsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_dictionary_messages_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListAllLinkedSymbolsRequest.ProtoReflect.Descriptor instead.
+func (*ListAllLinkedSymbolsRequest) Descriptor() ([]byte, []int) {
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *ListAllLinkedSymbolsRequest) GetWordUid() string {
+	if x != nil {
+		return x.WordUid
+	}
+	return ""
+}
+
+type ListAllLinkedSymbolsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SymbolsUids   []string               `protobuf:"bytes,1,rep,name=symbols_uids,json=symbolsUids,proto3" json:"symbols_uids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListAllLinkedSymbolsResponse) Reset() {
+	*x = ListAllLinkedSymbolsResponse{}
+	mi := &file_dictionary_messages_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListAllLinkedSymbolsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListAllLinkedSymbolsResponse) ProtoMessage() {}
+
+func (x *ListAllLinkedSymbolsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_dictionary_messages_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListAllLinkedSymbolsResponse.ProtoReflect.Descriptor instead.
+func (*ListAllLinkedSymbolsResponse) Descriptor() ([]byte, []int) {
+	return file_dictionary_messages_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *ListAllLinkedSymbolsResponse) GetSymbolsUids() []string {
+	if x != nil {
+		return x.SymbolsUids
+	}
+	return nil
+}
+
+var File_dictionary_messages_proto protoreflect.FileDescriptor
+
+const file_dictionary_messages_proto_rawDesc = "" +
 	"\n" +
-	"\x1flanguage/language-service.proto\x12\blanguage\x1a\x14language/types.proto\"&\n" +
+	"\x19dictionary-messages.proto\x12\x06lexora\x1a\x14language-types.proto\"&\n" +
 	"\x12GetReferentRequest\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\"$\n" +
 	"\x10GetSymbolRequest\x12\x10\n" +
@@ -1219,50 +1587,50 @@ const file_language_language_service_proto_rawDesc = "" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\"G\n" +
 	"\x14ListReferentsRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1b\n" +
-	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\"j\n" +
-	"\x15ListReferentsResponse\x120\n" +
-	"\treferents\x18\x01 \x03(\v2\x12.language.ReferentR\treferents\x12\x1f\n" +
+	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\"h\n" +
+	"\x15ListReferentsResponse\x12.\n" +
+	"\treferents\x18\x01 \x03(\v2\x10.lexora.ReferentR\treferents\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xc4\x01\n" +
+	"totalCount\"\xc0\x01\n" +
 	"\x14FindReferentsRequest\x12\x14\n" +
-	"\x05query\x18\x01 \x01(\tR\x05query\x125\n" +
-	"\vsearch_mode\x18\x02 \x01(\x0e2\x14.language.SearchModeR\n" +
-	"searchMode\x12.\n" +
-	"\blanguage\x18\x03 \x01(\x0e2\x12.language.LanguageR\blanguage\x12\x12\n" +
+	"\x05query\x18\x01 \x01(\tR\x05query\x123\n" +
+	"\vsearch_mode\x18\x02 \x01(\x0e2\x12.lexora.SearchModeR\n" +
+	"searchMode\x12,\n" +
+	"\blanguage\x18\x03 \x01(\x0e2\x10.lexora.LanguageR\blanguage\x12\x12\n" +
 	"\x04page\x18\x04 \x01(\x05R\x04page\x12\x1b\n" +
-	"\tpage_size\x18\x05 \x01(\x05R\bpageSize\"j\n" +
-	"\x15FindReferentsResponse\x120\n" +
-	"\treferents\x18\x01 \x03(\v2\x12.language.ReferentR\treferents\x12\x1f\n" +
+	"\tpage_size\x18\x05 \x01(\x05R\bpageSize\"h\n" +
+	"\x15FindReferentsResponse\x12.\n" +
+	"\treferents\x18\x01 \x03(\v2\x10.lexora.ReferentR\treferents\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\x9f\x01\n" +
+	"totalCount\"\x9d\x01\n" +
 	"\x15CreateReferentRequest\x12!\n" +
 	"\fen_reference\x18\x01 \x01(\tR\venReference\x12&\n" +
-	"\fimage_source\x18\x02 \x01(\tH\x00R\vimageSource\x88\x01\x01\x12*\n" +
-	"\asymbols\x18\x03 \x03(\v2\x10.language.SymbolR\asymbolsB\x0f\n" +
-	"\r_image_source\"\xfa\x01\n" +
+	"\fimage_source\x18\x02 \x01(\tH\x00R\vimageSource\x88\x01\x01\x12(\n" +
+	"\asymbols\x18\x03 \x03(\v2\x0e.lexora.SymbolR\asymbolsB\x0f\n" +
+	"\r_image_source\"\xf2\x01\n" +
 	"\x13CreateSymbolRequest\x12!\n" +
-	"\freferent_uid\x18\x01 \x01(\tR\vreferentUid\x12.\n" +
-	"\blanguage\x18\x02 \x01(\x0e2\x12.language.LanguageR\blanguage\x125\n" +
-	"\vsymbol_type\x18\x03 \x01(\x0e2\x14.language.SymbolTypeR\n" +
-	"symbolType\x12)\n" +
-	"\x05lemma\x18\x04 \x01(\v2\x0e.language.WordH\x00R\x05lemma\x88\x01\x01\x12$\n" +
-	"\x05words\x18\x05 \x03(\v2\x0e.language.WordR\x05wordsB\b\n" +
-	"\x06_lemma\"\xcf\x01\n" +
+	"\freferent_uid\x18\x01 \x01(\tR\vreferentUid\x12,\n" +
+	"\blanguage\x18\x02 \x01(\x0e2\x10.lexora.LanguageR\blanguage\x123\n" +
+	"\vsymbol_type\x18\x03 \x01(\x0e2\x12.lexora.SymbolTypeR\n" +
+	"symbolType\x12'\n" +
+	"\x05lemma\x18\x04 \x01(\v2\f.lexora.WordH\x00R\x05lemma\x88\x01\x01\x12\"\n" +
+	"\x05words\x18\x05 \x03(\v2\f.lexora.WordR\x05wordsB\b\n" +
+	"\x06_lemma\"\xcd\x01\n" +
 	"\x11CreateWordRequest\x12\x1d\n" +
 	"\n" +
 	"symbol_uid\x18\x01 \x01(\tR\tsymbolUid\x12\x12\n" +
 	"\x04word\x18\x02 \x01(\tR\x04word\x12&\n" +
 	"\fsound_source\x18\x03 \x01(\tH\x00R\vsoundSource\x88\x01\x01\x12\x15\n" +
-	"\x03ipa\x18\x04 \x01(\tH\x01R\x03ipa\x88\x01\x01\x12/\n" +
-	"\tword_type\x18\x05 \x01(\x0e2\x12.language.WordTypeR\bwordTypeB\x0f\n" +
+	"\x03ipa\x18\x04 \x01(\tH\x01R\x03ipa\x88\x01\x01\x12-\n" +
+	"\tword_type\x18\x05 \x01(\x0e2\x10.lexora.WordTypeR\bwordTypeB\x0f\n" +
 	"\r_sound_sourceB\x06\n" +
-	"\x04_ipa\"G\n" +
-	"\x15UpdateReferentRequest\x12.\n" +
-	"\breferent\x18\x01 \x01(\v2\x12.language.ReferentR\breferent\"?\n" +
-	"\x13UpdateSymbolRequest\x12(\n" +
-	"\x06symbol\x18\x01 \x01(\v2\x10.language.SymbolR\x06symbol\"7\n" +
-	"\x11UpdateWordRequest\x12\"\n" +
-	"\x04word\x18\x01 \x01(\v2\x0e.language.WordR\x04word\":\n" +
+	"\x04_ipa\"E\n" +
+	"\x15UpdateReferentRequest\x12,\n" +
+	"\breferent\x18\x01 \x01(\v2\x10.lexora.ReferentR\breferent\"=\n" +
+	"\x13UpdateSymbolRequest\x12&\n" +
+	"\x06symbol\x18\x01 \x01(\v2\x0e.lexora.SymbolR\x06symbol\"5\n" +
+	"\x11UpdateWordRequest\x12 \n" +
+	"\x04word\x18\x01 \x01(\v2\f.lexora.WordR\x04word\":\n" +
 	"\x15DeleteReferentRequest\x12!\n" +
 	"\freferent_uid\x18\x01 \x01(\tR\vreferentUid\"4\n" +
 	"\x13DeleteSymbolRequest\x12\x1d\n" +
@@ -1272,12 +1640,12 @@ const file_language_language_service_proto_rawDesc = "" +
 	"\bword_uid\x18\x01 \x01(\tR\awordUid\"_\n" +
 	"\x1bLinkSymbolToReferentRequest\x12\x1d\n" +
 	"\n" +
-	"symbol_uid\x18\x01 \x01(\tR\tsymbolUid\x12!\n" +
+	"symbol_uid\x18\x01 \x03(\tR\tsymbolUid\x12!\n" +
 	"\freferent_uid\x18\x02 \x01(\tR\vreferentUid\"6\n" +
 	"\x1cLinkSymbolToReferentResponse\x12\x16\n" +
 	"\x06succes\x18\x01 \x01(\bR\x06succes\"S\n" +
 	"\x17LinkWordToSymbolRequest\x12\x19\n" +
-	"\bword_uid\x18\x01 \x01(\tR\awordUid\x12\x1d\n" +
+	"\bword_uid\x18\x01 \x03(\tR\awordUid\x12\x1d\n" +
 	"\n" +
 	"symbol_uid\x18\x02 \x01(\tR\tsymbolUid\"2\n" +
 	"\x18LinkWordToSymbolResponse\x12\x16\n" +
@@ -1287,160 +1655,134 @@ const file_language_language_service_proto_rawDesc = "" +
 	"\n" +
 	"symbol_uid\x18\x02 \x01(\tR\tsymbolUid\"0\n" +
 	"\x16SetSymbolLemmaResponse\x12\x16\n" +
-	"\x06succes\x18\x01 \x01(\bR\x06succes*r\n" +
+	"\x06succes\x18\x01 \x01(\bR\x06succes\"c\n" +
+	"\x1fUnlinkSymbolFromReferentRequest\x12\x1d\n" +
+	"\n" +
+	"symbol_uid\x18\x01 \x01(\tR\tsymbolUid\x12!\n" +
+	"\freferent_uid\x18\x02 \x01(\tR\vreferentUid\"<\n" +
+	" UnlinkSymbolFromReferentResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"W\n" +
+	"\x1bUnlinkWordFromSymbolRequest\x12\x19\n" +
+	"\bword_uid\x18\x01 \x01(\tR\awordUid\x12\x1d\n" +
+	"\n" +
+	"symbol_uid\x18\x02 \x01(\tR\tsymbolUid\"8\n" +
+	"\x1cUnlinkWordFromSymbolResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\">\n" +
+	"\x1dListAllLinkedReferentsRequest\x12\x1d\n" +
+	"\n" +
+	"symbol_uid\x18\x01 \x01(\tR\tsymbolUid\"E\n" +
+	"\x1eListAllLinkedReferentsResponse\x12#\n" +
+	"\rreferent_uids\x18\x01 \x03(\tR\freferentUids\"8\n" +
+	"\x1bListAllLinkedSymbolsRequest\x12\x19\n" +
+	"\bword_uid\x18\x01 \x01(\tR\awordUid\"A\n" +
+	"\x1cListAllLinkedSymbolsResponse\x12!\n" +
+	"\fsymbols_uids\x18\x01 \x03(\tR\vsymbolsUids*r\n" +
 	"\n" +
 	"SearchMode\x12\x1b\n" +
 	"\x17SEARCH_MODE_UNSPECIFIED\x10\x00\x12\x14\n" +
 	"\x10SEARCH_MODE_WORD\x10\x01\x12\x1c\n" +
 	"\x18SEARCH_MODE_SYMBOL_LEMMA\x10\x02\x12\x13\n" +
-	"\x0fSEARCH_MODE_ANY\x10\x032\xc6\t\n" +
-	"\x0fLanguageService\x12?\n" +
-	"\vGetReferent\x12\x1c.language.GetReferentRequest\x1a\x12.language.Referent\x129\n" +
-	"\tGetSymbol\x12\x1a.language.GetSymbolRequest\x1a\x10.language.Symbol\x123\n" +
-	"\aGetWord\x12\x18.language.GetWordRequest\x1a\x0e.language.Word\x12P\n" +
-	"\rListReferents\x12\x1e.language.ListReferentsRequest\x1a\x1f.language.ListReferentsResponse\x12P\n" +
-	"\rFindReferents\x12\x1e.language.FindReferentsRequest\x1a\x1f.language.FindReferentsResponse\x12E\n" +
-	"\x0eCreateReferent\x12\x1f.language.CreateReferentRequest\x1a\x12.language.Referent\x12?\n" +
-	"\fCreateSymbol\x12\x1d.language.CreateSymbolRequest\x1a\x10.language.Symbol\x129\n" +
-	"\n" +
-	"CreateWord\x12\x1b.language.CreateWordRequest\x1a\x0e.language.Word\x12E\n" +
-	"\x0eUpdateReferent\x12\x1f.language.UpdateReferentRequest\x1a\x12.language.Referent\x12?\n" +
-	"\fUpdateSymbol\x12\x1d.language.UpdateSymbolRequest\x1a\x10.language.Symbol\x129\n" +
-	"\n" +
-	"UpdateWord\x12\x1b.language.UpdateWordRequest\x1a\x0e.language.Word\x12E\n" +
-	"\x0eDeleteReferent\x12\x1f.language.DeleteReferentRequest\x1a\x12.language.Referent\x12?\n" +
-	"\fDeleteSymbol\x12\x1d.language.DeleteSymbolRequest\x1a\x10.language.Symbol\x129\n" +
-	"\n" +
-	"DeleteWord\x12\x1b.language.DeleteWordRequest\x1a\x0e.language.Word\x12e\n" +
-	"\x14LinkSymbolToReferent\x12%.language.LinkSymbolToReferentRequest\x1a&.language.LinkSymbolToReferentResponse\x12Y\n" +
-	"\x10LinkWordToSymbol\x12!.language.LinkWordToSymbolRequest\x1a\".language.LinkWordToSymbolResponse\x12S\n" +
-	"\x0eSetSymbolLemma\x12\x1f.language.SetSymbolLemmaRequest\x1a .language.SetSymbolLemmaResponseBXZVgithub.com/Lykeion/lexora-dictionary-service/internal/grpc/generated/language;languageb\x06proto3"
+	"\x0fSEARCH_MODE_ANY\x10\x03b\x06proto3"
 
 var (
-	file_language_language_service_proto_rawDescOnce sync.Once
-	file_language_language_service_proto_rawDescData []byte
+	file_dictionary_messages_proto_rawDescOnce sync.Once
+	file_dictionary_messages_proto_rawDescData []byte
 )
 
-func file_language_language_service_proto_rawDescGZIP() []byte {
-	file_language_language_service_proto_rawDescOnce.Do(func() {
-		file_language_language_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_language_language_service_proto_rawDesc), len(file_language_language_service_proto_rawDesc)))
+func file_dictionary_messages_proto_rawDescGZIP() []byte {
+	file_dictionary_messages_proto_rawDescOnce.Do(func() {
+		file_dictionary_messages_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_dictionary_messages_proto_rawDesc), len(file_dictionary_messages_proto_rawDesc)))
 	})
-	return file_language_language_service_proto_rawDescData
+	return file_dictionary_messages_proto_rawDescData
 }
 
-var file_language_language_service_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_language_language_service_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
-var file_language_language_service_proto_goTypes = []any{
-	(SearchMode)(0),                      // 0: language.SearchMode
-	(*GetReferentRequest)(nil),           // 1: language.GetReferentRequest
-	(*GetSymbolRequest)(nil),             // 2: language.GetSymbolRequest
-	(*GetWordRequest)(nil),               // 3: language.GetWordRequest
-	(*ListReferentsRequest)(nil),         // 4: language.ListReferentsRequest
-	(*ListReferentsResponse)(nil),        // 5: language.ListReferentsResponse
-	(*FindReferentsRequest)(nil),         // 6: language.FindReferentsRequest
-	(*FindReferentsResponse)(nil),        // 7: language.FindReferentsResponse
-	(*CreateReferentRequest)(nil),        // 8: language.CreateReferentRequest
-	(*CreateSymbolRequest)(nil),          // 9: language.CreateSymbolRequest
-	(*CreateWordRequest)(nil),            // 10: language.CreateWordRequest
-	(*UpdateReferentRequest)(nil),        // 11: language.UpdateReferentRequest
-	(*UpdateSymbolRequest)(nil),          // 12: language.UpdateSymbolRequest
-	(*UpdateWordRequest)(nil),            // 13: language.UpdateWordRequest
-	(*DeleteReferentRequest)(nil),        // 14: language.DeleteReferentRequest
-	(*DeleteSymbolRequest)(nil),          // 15: language.DeleteSymbolRequest
-	(*DeleteWordRequest)(nil),            // 16: language.DeleteWordRequest
-	(*LinkSymbolToReferentRequest)(nil),  // 17: language.LinkSymbolToReferentRequest
-	(*LinkSymbolToReferentResponse)(nil), // 18: language.LinkSymbolToReferentResponse
-	(*LinkWordToSymbolRequest)(nil),      // 19: language.LinkWordToSymbolRequest
-	(*LinkWordToSymbolResponse)(nil),     // 20: language.LinkWordToSymbolResponse
-	(*SetSymbolLemmaRequest)(nil),        // 21: language.SetSymbolLemmaRequest
-	(*SetSymbolLemmaResponse)(nil),       // 22: language.SetSymbolLemmaResponse
-	(*Referent)(nil),                     // 23: language.Referent
-	(Language)(0),                        // 24: language.Language
-	(*Symbol)(nil),                       // 25: language.Symbol
-	(SymbolType)(0),                      // 26: language.SymbolType
-	(*Word)(nil),                         // 27: language.Word
-	(WordType)(0),                        // 28: language.WordType
+var file_dictionary_messages_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_dictionary_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 30)
+var file_dictionary_messages_proto_goTypes = []any{
+	(SearchMode)(0),                          // 0: lexora.SearchMode
+	(*GetReferentRequest)(nil),               // 1: lexora.GetReferentRequest
+	(*GetSymbolRequest)(nil),                 // 2: lexora.GetSymbolRequest
+	(*GetWordRequest)(nil),                   // 3: lexora.GetWordRequest
+	(*ListReferentsRequest)(nil),             // 4: lexora.ListReferentsRequest
+	(*ListReferentsResponse)(nil),            // 5: lexora.ListReferentsResponse
+	(*FindReferentsRequest)(nil),             // 6: lexora.FindReferentsRequest
+	(*FindReferentsResponse)(nil),            // 7: lexora.FindReferentsResponse
+	(*CreateReferentRequest)(nil),            // 8: lexora.CreateReferentRequest
+	(*CreateSymbolRequest)(nil),              // 9: lexora.CreateSymbolRequest
+	(*CreateWordRequest)(nil),                // 10: lexora.CreateWordRequest
+	(*UpdateReferentRequest)(nil),            // 11: lexora.UpdateReferentRequest
+	(*UpdateSymbolRequest)(nil),              // 12: lexora.UpdateSymbolRequest
+	(*UpdateWordRequest)(nil),                // 13: lexora.UpdateWordRequest
+	(*DeleteReferentRequest)(nil),            // 14: lexora.DeleteReferentRequest
+	(*DeleteSymbolRequest)(nil),              // 15: lexora.DeleteSymbolRequest
+	(*DeleteWordRequest)(nil),                // 16: lexora.DeleteWordRequest
+	(*LinkSymbolToReferentRequest)(nil),      // 17: lexora.LinkSymbolToReferentRequest
+	(*LinkSymbolToReferentResponse)(nil),     // 18: lexora.LinkSymbolToReferentResponse
+	(*LinkWordToSymbolRequest)(nil),          // 19: lexora.LinkWordToSymbolRequest
+	(*LinkWordToSymbolResponse)(nil),         // 20: lexora.LinkWordToSymbolResponse
+	(*SetSymbolLemmaRequest)(nil),            // 21: lexora.SetSymbolLemmaRequest
+	(*SetSymbolLemmaResponse)(nil),           // 22: lexora.SetSymbolLemmaResponse
+	(*UnlinkSymbolFromReferentRequest)(nil),  // 23: lexora.UnlinkSymbolFromReferentRequest
+	(*UnlinkSymbolFromReferentResponse)(nil), // 24: lexora.UnlinkSymbolFromReferentResponse
+	(*UnlinkWordFromSymbolRequest)(nil),      // 25: lexora.UnlinkWordFromSymbolRequest
+	(*UnlinkWordFromSymbolResponse)(nil),     // 26: lexora.UnlinkWordFromSymbolResponse
+	(*ListAllLinkedReferentsRequest)(nil),    // 27: lexora.ListAllLinkedReferentsRequest
+	(*ListAllLinkedReferentsResponse)(nil),   // 28: lexora.ListAllLinkedReferentsResponse
+	(*ListAllLinkedSymbolsRequest)(nil),      // 29: lexora.ListAllLinkedSymbolsRequest
+	(*ListAllLinkedSymbolsResponse)(nil),     // 30: lexora.ListAllLinkedSymbolsResponse
+	(*Referent)(nil),                         // 31: lexora.Referent
+	(Language)(0),                            // 32: lexora.Language
+	(*Symbol)(nil),                           // 33: lexora.Symbol
+	(SymbolType)(0),                          // 34: lexora.SymbolType
+	(*Word)(nil),                             // 35: lexora.Word
+	(WordType)(0),                            // 36: lexora.WordType
 }
-var file_language_language_service_proto_depIdxs = []int32{
-	23, // 0: language.ListReferentsResponse.referents:type_name -> language.Referent
-	0,  // 1: language.FindReferentsRequest.search_mode:type_name -> language.SearchMode
-	24, // 2: language.FindReferentsRequest.language:type_name -> language.Language
-	23, // 3: language.FindReferentsResponse.referents:type_name -> language.Referent
-	25, // 4: language.CreateReferentRequest.symbols:type_name -> language.Symbol
-	24, // 5: language.CreateSymbolRequest.language:type_name -> language.Language
-	26, // 6: language.CreateSymbolRequest.symbol_type:type_name -> language.SymbolType
-	27, // 7: language.CreateSymbolRequest.lemma:type_name -> language.Word
-	27, // 8: language.CreateSymbolRequest.words:type_name -> language.Word
-	28, // 9: language.CreateWordRequest.word_type:type_name -> language.WordType
-	23, // 10: language.UpdateReferentRequest.referent:type_name -> language.Referent
-	25, // 11: language.UpdateSymbolRequest.symbol:type_name -> language.Symbol
-	27, // 12: language.UpdateWordRequest.word:type_name -> language.Word
-	1,  // 13: language.LanguageService.GetReferent:input_type -> language.GetReferentRequest
-	2,  // 14: language.LanguageService.GetSymbol:input_type -> language.GetSymbolRequest
-	3,  // 15: language.LanguageService.GetWord:input_type -> language.GetWordRequest
-	4,  // 16: language.LanguageService.ListReferents:input_type -> language.ListReferentsRequest
-	6,  // 17: language.LanguageService.FindReferents:input_type -> language.FindReferentsRequest
-	8,  // 18: language.LanguageService.CreateReferent:input_type -> language.CreateReferentRequest
-	9,  // 19: language.LanguageService.CreateSymbol:input_type -> language.CreateSymbolRequest
-	10, // 20: language.LanguageService.CreateWord:input_type -> language.CreateWordRequest
-	11, // 21: language.LanguageService.UpdateReferent:input_type -> language.UpdateReferentRequest
-	12, // 22: language.LanguageService.UpdateSymbol:input_type -> language.UpdateSymbolRequest
-	13, // 23: language.LanguageService.UpdateWord:input_type -> language.UpdateWordRequest
-	14, // 24: language.LanguageService.DeleteReferent:input_type -> language.DeleteReferentRequest
-	15, // 25: language.LanguageService.DeleteSymbol:input_type -> language.DeleteSymbolRequest
-	16, // 26: language.LanguageService.DeleteWord:input_type -> language.DeleteWordRequest
-	17, // 27: language.LanguageService.LinkSymbolToReferent:input_type -> language.LinkSymbolToReferentRequest
-	19, // 28: language.LanguageService.LinkWordToSymbol:input_type -> language.LinkWordToSymbolRequest
-	21, // 29: language.LanguageService.SetSymbolLemma:input_type -> language.SetSymbolLemmaRequest
-	23, // 30: language.LanguageService.GetReferent:output_type -> language.Referent
-	25, // 31: language.LanguageService.GetSymbol:output_type -> language.Symbol
-	27, // 32: language.LanguageService.GetWord:output_type -> language.Word
-	5,  // 33: language.LanguageService.ListReferents:output_type -> language.ListReferentsResponse
-	7,  // 34: language.LanguageService.FindReferents:output_type -> language.FindReferentsResponse
-	23, // 35: language.LanguageService.CreateReferent:output_type -> language.Referent
-	25, // 36: language.LanguageService.CreateSymbol:output_type -> language.Symbol
-	27, // 37: language.LanguageService.CreateWord:output_type -> language.Word
-	23, // 38: language.LanguageService.UpdateReferent:output_type -> language.Referent
-	25, // 39: language.LanguageService.UpdateSymbol:output_type -> language.Symbol
-	27, // 40: language.LanguageService.UpdateWord:output_type -> language.Word
-	23, // 41: language.LanguageService.DeleteReferent:output_type -> language.Referent
-	25, // 42: language.LanguageService.DeleteSymbol:output_type -> language.Symbol
-	27, // 43: language.LanguageService.DeleteWord:output_type -> language.Word
-	18, // 44: language.LanguageService.LinkSymbolToReferent:output_type -> language.LinkSymbolToReferentResponse
-	20, // 45: language.LanguageService.LinkWordToSymbol:output_type -> language.LinkWordToSymbolResponse
-	22, // 46: language.LanguageService.SetSymbolLemma:output_type -> language.SetSymbolLemmaResponse
-	30, // [30:47] is the sub-list for method output_type
-	13, // [13:30] is the sub-list for method input_type
+var file_dictionary_messages_proto_depIdxs = []int32{
+	31, // 0: lexora.ListReferentsResponse.referents:type_name -> lexora.Referent
+	0,  // 1: lexora.FindReferentsRequest.search_mode:type_name -> lexora.SearchMode
+	32, // 2: lexora.FindReferentsRequest.language:type_name -> lexora.Language
+	31, // 3: lexora.FindReferentsResponse.referents:type_name -> lexora.Referent
+	33, // 4: lexora.CreateReferentRequest.symbols:type_name -> lexora.Symbol
+	32, // 5: lexora.CreateSymbolRequest.language:type_name -> lexora.Language
+	34, // 6: lexora.CreateSymbolRequest.symbol_type:type_name -> lexora.SymbolType
+	35, // 7: lexora.CreateSymbolRequest.lemma:type_name -> lexora.Word
+	35, // 8: lexora.CreateSymbolRequest.words:type_name -> lexora.Word
+	36, // 9: lexora.CreateWordRequest.word_type:type_name -> lexora.WordType
+	31, // 10: lexora.UpdateReferentRequest.referent:type_name -> lexora.Referent
+	33, // 11: lexora.UpdateSymbolRequest.symbol:type_name -> lexora.Symbol
+	35, // 12: lexora.UpdateWordRequest.word:type_name -> lexora.Word
+	13, // [13:13] is the sub-list for method output_type
+	13, // [13:13] is the sub-list for method input_type
 	13, // [13:13] is the sub-list for extension type_name
 	13, // [13:13] is the sub-list for extension extendee
 	0,  // [0:13] is the sub-list for field type_name
 }
 
-func init() { file_language_language_service_proto_init() }
-func file_language_language_service_proto_init() {
-	if File_language_language_service_proto != nil {
+func init() { file_dictionary_messages_proto_init() }
+func file_dictionary_messages_proto_init() {
+	if File_dictionary_messages_proto != nil {
 		return
 	}
 	file_language_types_proto_init()
-	file_language_language_service_proto_msgTypes[7].OneofWrappers = []any{}
-	file_language_language_service_proto_msgTypes[8].OneofWrappers = []any{}
-	file_language_language_service_proto_msgTypes[9].OneofWrappers = []any{}
+	file_dictionary_messages_proto_msgTypes[7].OneofWrappers = []any{}
+	file_dictionary_messages_proto_msgTypes[8].OneofWrappers = []any{}
+	file_dictionary_messages_proto_msgTypes[9].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_language_language_service_proto_rawDesc), len(file_language_language_service_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_dictionary_messages_proto_rawDesc), len(file_dictionary_messages_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   22,
+			NumMessages:   30,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   0,
 		},
-		GoTypes:           file_language_language_service_proto_goTypes,
-		DependencyIndexes: file_language_language_service_proto_depIdxs,
-		EnumInfos:         file_language_language_service_proto_enumTypes,
-		MessageInfos:      file_language_language_service_proto_msgTypes,
+		GoTypes:           file_dictionary_messages_proto_goTypes,
+		DependencyIndexes: file_dictionary_messages_proto_depIdxs,
+		EnumInfos:         file_dictionary_messages_proto_enumTypes,
+		MessageInfos:      file_dictionary_messages_proto_msgTypes,
 	}.Build()
-	File_language_language_service_proto = out.File
-	file_language_language_service_proto_goTypes = nil
-	file_language_language_service_proto_depIdxs = nil
+	File_dictionary_messages_proto = out.File
+	file_dictionary_messages_proto_goTypes = nil
+	file_dictionary_messages_proto_depIdxs = nil
 }

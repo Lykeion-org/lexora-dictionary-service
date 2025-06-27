@@ -1,78 +1,57 @@
 package main
 
 import (
-	"fmt"
-	"log"
-	"net"
-	"os"
-	"os/signal"
-	"syscall"
-
 	db "github.com/Lykeion-org/lexora-dictionary-service/internal/db"
 	grpcserver "github.com/Lykeion-org/lexora-dictionary-service/internal/grpc"
-	pb "github.com/Lykeion-org/lexora-dictionary-service/internal/grpc/generated"
-	"google.golang.org/grpc"
+	"os"
+	"errors"
+	"gopkg.in/yaml.v3"
 )
 
-func main() {
-	dsn, port := getConfigValues()
-
-	// Initialize database connection
-	gormDb,err := db.ConnectAndMigrate(dsn); if err != nil{
-		fmt.Print(err.Error())
-	}
-	
-
-	// Initialize services
-	referentSvc := &db.ReferentService{DB: *gormDb}
-	symbolSvc := &db.SymbolService{DB: *gormDb}
-	wordSvc := &db.WordService{DB: *gormDb}
-	relationshipSvc := &db.RelationshipService{DB: *gormDb}
-
-	// Create gRPC server
-	grpcServer := grpc.NewServer()
-	languageServer := &grpcserver.LanguageServer{
-		ReferentSvc: referentSvc,
-		SymbolSvc:   symbolSvc,
-		WordSvc:     wordSvc,
-		RelSvc:    relationshipSvc,
-	}
-	pb.RegisterLanguageServiceServer(grpcServer, languageServer)
-
-	// Start gRPC server
-	listener, err := net.Listen("tcp", port)
-	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
-	}
-
-	go func() {
-		log.Println("Starting gRPC server on :50051")
-		if err := grpcServer.Serve(listener); err != nil {
-			log.Fatalf("failed to serve: %v", err)
-		}
-	}()
-
-	// Graceful shutdown
-	stop := make(chan os.Signal, 1)
-	signal.Notify(stop, syscall.SIGINT, syscall.SIGTERM)
-	<-stop
-
-	log.Println("Shutting down server...")
-	grpcServer.GracefulStop()
-	log.Println("Server stopped")
+type Config struct {
+	UseCli bool `yaml:"use_cli"`
+	UseGrpcServer bool `yaml:"use_grpc_server"`
+	UseRestApi bool `yaml:"use_rest_api"`
+	DictionaryServicePort string `yaml:"dictionary_service_port"`
+	DatabaseHost string `yaml:"database_host"`
+	DatabasePort int `yaml:"database_port"`
+	DatabaseName string `yaml:"database_name"`
+	DatabaseUserName string `yaml:"database_username"`
+	DatabasePassword string `yaml:"database_password"`
 }
 
+func main() {
+	//Load config
+	cfg := loadConfig("/Users/kevin/Repositories/lykeion/server/services/lexora/dictionary-service/config.yaml")
 
-func getConfigValues() (dsnString string, listenerPort string ){
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
-		os.Getenv("DB_HOST"),
-		os.Getenv("DB_USER"),
-		os.Getenv("DB_PASSWORD"),
-		os.Getenv("DB_NAME"),
-		os.Getenv("DB_PORT"),
-	)
+	//Set init variables and create objects
+	connString := db.CreateConnectionString(cfg.DatabaseHost, cfg.DatabasePort, cfg.DatabaseName, cfg.DatabaseUserName, cfg.DatabasePassword)
+	db, _ := db.ConnectAndMigrate(connString)
+	
+	srv := grpcserver.NewLanguageServer(db)
+	
+	//Run main processes
+	if(cfg.UseGrpcServer) {
+		srv.StartServer(cfg.DictionaryServicePort); defer srv.StopServer()
+	}
 
-	var port string = ":50001"
+	select {}
 
-	return dsn, port
+}
+
+func loadConfig(filePath string) (*Config){
+	var cfg *Config
+    if _, err := os.Stat(filePath); err == nil {
+        data, err := os.ReadFile(filePath)
+        if err != nil {
+            panic("Could not read file: " + filePath)
+        }
+        if err := yaml.Unmarshal(data, &cfg); err != nil {
+            panic("Error parsing YAML: " + err.Error())
+        }
+    } else if !errors.Is(err, os.ErrNotExist) {
+        panic("Unexpected error occured when loading config: " + err.Error())
+    }
+
+	return cfg
 }
